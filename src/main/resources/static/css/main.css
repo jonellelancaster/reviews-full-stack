@@ -60,6 +60,7 @@ main,
 footer{
     margin: 0 auto;
     max-width: 900px;
+    padding: 1em;
 }
 .main-content-categories{
     display:flex;
@@ -71,4 +72,8 @@ footer{
 div{
     padding: 0.5em;
 
+}
+p{
+    padding: 0.5em;
+}
 
