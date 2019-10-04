@@ -26,15 +26,15 @@ public class ReviewControllerTest {
 	private Review review2;
 	
 	@Mock
-	private Catagory catagory;
+	private Category category;
 	
 	@Mock
-	private Catagory catagory2;
+	private Category category2;
 	
 	@Mock
 	private ReviewRepository reviewRepo;
 	@Mock
-	private CatagoryRepository catagoryRepo;
+	private CategoryRepository categoryRepo;
 	@Mock
 	private Model model;
 
@@ -62,21 +62,21 @@ public class ReviewControllerTest {
 		}
 	
 	@Test
-	public void shouldAddSingleCatagoryToModel() throws CatagoryNotFoundException{
-		long arbituaryCatagoryId = 1;
-		when(catagoryRepo.findById(arbituaryCatagoryId)).thenReturn(Optional.of(catagory));
+	public void shouldAddSinglecategoryToModel() throws CategoryNotFoundException{
+		long arbituaryCategoryId = 1;
+		when(categoryRepo.findById(arbituaryCategoryId)).thenReturn(Optional.of(category));
 
-		underTest.findOneCatagory(arbituaryCatagoryId, model);
-		verify(model).addAttribute("catagories", catagory);
+		underTest.findOneCategory(arbituaryCategoryId, model);
+		verify(model).addAttribute("categories", category);
 	}
 	
 	
 	@Test
-	public void shouldAddAllCatagoriesToModel() {
-		Collection<Catagory> allCatagories =Arrays.asList(catagory, catagory2);
-		when(catagoryRepo.findAll()).thenReturn(allCatagories);
-		underTest.findAllCatagories(model);
-		verify(model).addAttribute("catagories", allCatagories);
+	public void shouldAddAllcategoriesToModel() {
+		Collection<Category> allcategories =Arrays.asList(category, category2);
+		when(categoryRepo.findAll()).thenReturn(allcategories);
+		underTest.findAllCategories(model);
+		verify(model).addAttribute("categories", allcategories);
 	}
 		
 	

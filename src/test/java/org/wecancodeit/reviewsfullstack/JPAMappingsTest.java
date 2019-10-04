@@ -25,35 +25,35 @@ public class JPAMappingsTest {
 	private TestEntityManager entityMangager;
 
 	@Resource
-	private CatagoryRepository catagoryRepo;
+	private CategoryRepository categoryRepo;
 
 	@Resource
 	private ReviewRepository reviewRepo;
 
 	@Test
-	public void shouldSaveAndLoadCatagory() {
-		Catagory catagory = catagoryRepo.save(new Catagory("catagory"));
-		long catagoryId = catagory.getId();
+	public void shouldSaveAndLoadcategory() {
+		Category category = categoryRepo.save(new Category("category"));
+		long categoryId = category.getId();
 		entityMangager.flush();
 		entityMangager.clear();
 
-		Optional<Catagory> result = catagoryRepo.findById(catagoryId);
-		catagory =result.get();
-		assertThat(catagory.getCatagoryName(), is("catagory"));
+		Optional<Category> result = categoryRepo.findById(categoryId);
+		category =result.get();
+		assertThat(category.getName(), is("category"));
 	}
 
 	@Test
-	public void shouldGenerateCatagoryId() {
-		Catagory catagory = catagoryRepo.save(new Catagory("catagory"));
-		long catagoryId = catagory.getId();
+	public void shouldGeneratecategoryId() {
+		Category category = categoryRepo.save(new Category("category"));
+		long categoryId = category.getId();
 		entityMangager.flush();
 		entityMangager.clear();
-		assertThat(catagoryId, is(greaterThan(0L)));
+		assertThat(categoryId, is(greaterThan(0L)));
 	}
 
 	@Test
 	public void shouldSaveAndLoadReview() {
-		Review review = new Review("review title", "imageUrl", "content");
+		Review review = new Review("name", "imageUrl", "content");
 		review = reviewRepo.save(review);
 		long reviewId = review.getId();
 		entityMangager.flush();
@@ -61,13 +61,13 @@ public class JPAMappingsTest {
 
 		Optional<Review> result = reviewRepo.findById(reviewId);
 		review =result.get();
-		assertThat(review.getReviewTitle(), is("review title"));
+		assertThat(review.getName(), is("name"));
+	
 	}
-
 	@Test
-	public void shouldEstablishRelationshipReviewToCatagory() {
-		Catagory lowestCarb = catagoryRepo.save(new Catagory("Lowest Carb Count"));
-		Catagory mediumCarb = catagoryRepo.save(new Catagory("Medium Carb Count"));
+	public void shouldEstablishRelationshipReviewTocategory() {
+		Category lowestCarb = categoryRepo.save(new Category("Lowest Carb Count"));
+		Category mediumCarb = categoryRepo.save(new Category("Medium Carb Count"));
 
 		Review review = new Review("Eritryol", "imageUrl", "content", lowestCarb, mediumCarb);
 		review = reviewRepo.save(review);
@@ -78,12 +78,12 @@ public class JPAMappingsTest {
 
 		Optional<Review> result = reviewRepo.findById(reviewId);
 		review = result.get();
-		assertThat(review.getCatagories(), containsInAnyOrder(lowestCarb, mediumCarb));
+		assertThat(review.getCategories(), containsInAnyOrder(lowestCarb, mediumCarb));
 	}
 
 	@Test
-	public void shouldFindReviewsForCatagories() {
-		Catagory lowestCarb = catagoryRepo.save(new Catagory("Lowest Carb Count"));
+	public void shouldFindReviewsForcategories() {
+		Category lowestCarb = categoryRepo.save(new Category("Lowest Carb Count"));
 
 		Review review1 = reviewRepo.save(new Review("Eritryol", "imageUrl", "content", lowestCarb));
 		Review review2 = reviewRepo.save(new Review("MonkFruit", "imageUrl", "content", lowestCarb));
@@ -91,24 +91,24 @@ public class JPAMappingsTest {
 
 		entityMangager.flush();
 		entityMangager.clear();
-		Collection<Review> reviewsForCatagory = reviewRepo.findByCatagoriesContains(lowestCarb);
-		assertThat(reviewsForCatagory, containsInAnyOrder(review1, review2));
+		Collection<Review> reviewsForcategory = reviewRepo.findByCategoriesContains(lowestCarb);
+		assertThat(reviewsForcategory, containsInAnyOrder(review1, review2));
 
 	}
 
 	@Test
-	public void shouldFindReviewsForCatagoriesById() {
+	public void shouldFindReviewsForcategoriesById() {
 
-		Catagory lowestCarb = catagoryRepo.save(new Catagory("Lowest Carb Count"));
-		long catagoryId = lowestCarb.getId();
+		Category lowestCarb = categoryRepo.save(new Category("Lowest Carb Count"));
+		long categoryId = lowestCarb.getId();
 
 		Review review1 = reviewRepo.save(new Review("Eritryol", "imageUrl", "content", lowestCarb));
 		Review review2 = reviewRepo.save(new Review("MonkFruit", "imageUrl", "content", lowestCarb));
 
 		entityMangager.flush();
 		entityMangager.clear();
-		Collection<Review> reviewsForCatagory = reviewRepo.findByCatagoriesId(catagoryId);
-		assertThat(reviewsForCatagory, containsInAnyOrder(review1, review2));
+		Collection<Review> reviewsForcategory = reviewRepo.findByCategoriesId(categoryId);
+		assertThat(reviewsForcategory, containsInAnyOrder(review1, review2));
 
 	}
 

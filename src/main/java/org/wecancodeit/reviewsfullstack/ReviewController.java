@@ -16,7 +16,7 @@ public class ReviewController {
 	@Resource
 	ReviewRepository reviewRepo;
 	@Resource
-	CatagoryRepository catagoryRepo;
+	CategoryRepository categoryRepo;
 
 	@RequestMapping("/review")
 	public String findOneReview(@RequestParam(value = "id") long id, Model model) throws ReviewNotFoundException {
@@ -29,26 +29,27 @@ public class ReviewController {
 		throw new ReviewNotFoundException();
 	}
 
-	@RequestMapping("/show-reviews")
+	@RequestMapping("/reviews")
 	public String findAllReviews(Model model) {
 		model.addAttribute("reviews", reviewRepo.findAll());
 		return ("reviews");
 	}
 
-	@RequestMapping("/catagory")
-	public String findOneCatagory(@RequestParam("id") long id, Model model) throws CatagoryNotFoundException {
-		Optional<Catagory> catagory = catagoryRepo.findById(id);
-		if (catagory.isPresent()) {
-			model.addAttribute("catagories", catagory.get());
-			return "catagory";
+	@RequestMapping("/category")
+	public String findOneCategory(@RequestParam(value = "id") long id, Model model) throws CategoryNotFoundException {
+		Optional<Category> category = categoryRepo.findById(id);
+		if (category.isPresent()) {
+			model.addAttribute("categories", category.get());
+			return "category";
 		}
-		throw new CatagoryNotFoundException();
+		throw new CategoryNotFoundException();
 	}
-@RequestMapping
-	public String findAllCatagories(Model model) {
-	model.addAttribute("catagories", catagoryRepo.findAll());
-	return ("catagories");
-		
+
+	@RequestMapping("/categories")
+	public String findAllCategories(Model model) {
+		model.addAttribute("categories", categoryRepo.findAll());
+		return ("categories");
+
 	}
 
 }

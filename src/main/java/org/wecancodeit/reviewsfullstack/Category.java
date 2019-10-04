@@ -8,24 +8,24 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Catagory {
+public class Category {
 
 	@Id
 	@GeneratedValue
 	private long id;
 
-	private String catagoryName;
+	private String name;
 	
 	
-	@ManyToMany(mappedBy= "catagories")
+	@ManyToMany(mappedBy= "categories")
 	private Collection<Review> reviews;
 
 	public long getId() {
 		return id;
 	}
 
-	public Object getCatagoryName() {
-		return catagoryName;
+	public String getName() {
+		return name;
 	}
 	
 
@@ -33,11 +33,11 @@ public class Catagory {
 		return reviews;
 	}
 
-	public Catagory() {
+	public Category() {
 	}
 
-	public Catagory(String catagoryName) {
-		this.catagoryName = catagoryName;
+	public Category(String name) {
+		this.name = name;
 
 	}
 
@@ -57,7 +57,7 @@ public class Catagory {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Catagory other = (Catagory) obj;
+		Category other = (Category) obj;
 		if (id != other.id)
 			return false;
 		return true;

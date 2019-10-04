@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Single Review</title>
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+<body>
+
+    <header class="main-header">
+        <h1> Food Choice</h1>
+    </header>
+
+    <main class="main-content-review">
+        <div th:each="review: ${reviews}">
+            <p th:text="${review.name}"></p>
+            <img th:src="${review.imageUrl}" />
+            <p th:text="${review.content}"></p>
+
+    </main>
+
+    <footer>
+        <p><a href="/reviews">Back to main</a></p>
+        <small>&copy Jonelle's Keto Korner</small>
+    </footer>
+
+</body>
+
+</html>

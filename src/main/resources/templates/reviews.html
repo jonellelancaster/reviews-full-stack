@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Glycemic Index of Foods</title>
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+<body>
+
+    <header class="main-header">
+        <h1>Glycemic Index of Foods</h1>
+    </header>
+
+    <main class="main-content">
+
+        <p><a href="/categories">
+                Foods by Glycemic Catagory
+            </a></p>
+        <ul>
+            <p>
+                <h3>Individual Foods</h3>
+            </p>
+            <li th:each="review: ${reviews}"><a th:href="@{/review(id=${review.id})}" th:text="${review.name}"></a></li>
+        </ul>
+
+
+    </main>
+
+    <footer>
+
+        <small>&copy Jonelle's Keto Korner</small>
+    </footer>
+
+</body>
+
+</html>

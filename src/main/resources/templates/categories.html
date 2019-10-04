@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>category Listing</title>
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+<body>
+    <header class="main-header"></header>
+    <main class="main-content-categories">
+
+        <div th:each="category: ${categories}">
+            <h2><a th:href="@{/category(id=${category.id})}" th:text="${category.name}"></a>
+            </h2>
+        </div>
+    </main>
+    <footer>
+        <p><a href="/reviews">Back to main</a></p>
+        <small>&copy Jonelle's Keto Korner</small>
+    </footer>
+</body>
+
+</html>

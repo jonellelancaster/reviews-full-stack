@@ -7,6 +7,7 @@ import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 @Entity
 public class Review {
@@ -15,15 +16,16 @@ public class Review {
 	@GeneratedValue
 	private long id;
 	
-	private String reviewTitle;
+	private String name;
 	private String imageUrl;
+	@Lob
 	private String content;
 	
 	@ManyToMany
-	private Collection<Catagory> catagories;
+	private Collection<Category> categories;
 
-	public String getReviewTitle() {
-		return reviewTitle;
+	public String getName() {
+		return name;
 	}
 
 	public String getImageUrl() {
@@ -41,14 +43,14 @@ public class Review {
 	}
 
 	
-	public Collection<Catagory> getCatagories() {
-		return catagories;
+	public Collection<Category> getCategories() {
+		return categories;
 	}
-	public Review(String reviewTitle, String imageUrl, String content, Catagory...catagories) {
-		this.reviewTitle = reviewTitle;
+	public Review(String name, String imageUrl, String content, Category...categories) {
+		this.name = name;
 		this.imageUrl = imageUrl;
 		this.content = content;
-		this.catagories =new HashSet<>(Arrays.asList(catagories));
+		this.categories =new HashSet<>(Arrays.asList(categories));
 	}
 
 	@Override
