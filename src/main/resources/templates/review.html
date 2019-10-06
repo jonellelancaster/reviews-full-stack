@@ -20,10 +20,17 @@
 
     </main>
 
+
+    </div>
+
+
     <footer>
+        <p th:each="category: ${reviews.categories}"><a th:href="@{/categories(id=${category.id})}"
+                th:text="${category.name}"></a></p>
         <p><a href="/categories"> Back to categories</a></p>
         <p><a href="/reviews">Back to main</a></p>
         <small>&copy Jonelle's Keto Korner</small>
+
     </footer>
 
 </body>
