@@ -14,6 +14,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
+import org.wecancodeit.reviewsfullstack.controllers.ReviewController;
+import org.wecancodeit.reviewsfullstack.models.Category;
+import org.wecancodeit.reviewsfullstack.models.Review;
+import org.wecancodeit.reviewsfullstack.notfound.CategoryNotFoundException;
+import org.wecancodeit.reviewsfullstack.notfound.ReviewNotFoundException;
+import org.wecancodeit.reviewsfullstack.repositories.CategoryRepository;
+import org.wecancodeit.reviewsfullstack.repositories.ReviewRepository;
 
 
 public class ReviewControllerTest {
@@ -25,12 +32,12 @@ public class ReviewControllerTest {
 	@Mock
 	private Review review2;
 	
-	@Mock
-	private Category category;
-	
-	@Mock
-	private Category category2;
-	
+//	@Mock
+//	private Category category;
+//	
+//	@Mock
+//	private Category category2;
+//	
 	@Mock
 	private ReviewRepository reviewRepo;
 	@Mock
@@ -61,24 +68,24 @@ public class ReviewControllerTest {
 		verify(model).addAttribute("reviews", allReviews);
 		}
 	
-	@Test
-	public void shouldAddSinglecategoryToModel() throws CategoryNotFoundException{
-		long arbituaryCategoryId = 1;
-		when(categoryRepo.findById(arbituaryCategoryId)).thenReturn(Optional.of(category));
-
-		underTest.findOneCategory(arbituaryCategoryId, model);
-		verify(model).addAttribute("categories", category);
-	}
-	
-	
-	@Test
-	public void shouldAddAllcategoriesToModel() {
-		Collection<Category> allcategories =Arrays.asList(category, category2);
-		when(categoryRepo.findAll()).thenReturn(allcategories);
-		underTest.findAllCategories(model);
-		verify(model).addAttribute("categories", allcategories);
-	}
-		
+//	@Test
+//	public void shouldAddSinglecategoryToModel() throws CategoryNotFoundException{
+//		long arbituaryCategoryId = 1;
+//		when(categoryRepo.findById(arbituaryCategoryId)).thenReturn(Optional.of(category));
+//
+//		underTest.findOneCategory(arbituaryCategoryId, model);
+//		verify(model).addAttribute("categories", category);
+//	}
+//	
+//	
+//	@Test
+//	public void shouldAddAllcategoriesToModel() {
+//		Collection<Category> allcategories =Arrays.asList(category, category2);
+//		when(categoryRepo.findAll()).thenReturn(allcategories);
+//		underTest.findAllCategories(model);
+//		verify(model).addAttribute("categories", allcategories);
+//	}
+//		
 	
 	}
 	

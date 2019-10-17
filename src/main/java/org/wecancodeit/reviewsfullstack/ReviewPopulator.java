@@ -4,6 +4,10 @@ import javax.annotation.Resource;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.wecancodeit.reviewsfullstack.models.Category;
+import org.wecancodeit.reviewsfullstack.models.Review;
+import org.wecancodeit.reviewsfullstack.repositories.CategoryRepository;
+import org.wecancodeit.reviewsfullstack.repositories.ReviewRepository;
 
 @Component
 public class ReviewPopulator implements CommandLineRunner {

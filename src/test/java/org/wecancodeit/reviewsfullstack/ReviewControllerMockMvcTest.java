@@ -21,6 +21,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.wecancodeit.reviewsfullstack.controllers.ReviewController;
+import org.wecancodeit.reviewsfullstack.models.Category;
+import org.wecancodeit.reviewsfullstack.models.Review;
+import org.wecancodeit.reviewsfullstack.repositories.CategoryRepository;
+import org.wecancodeit.reviewsfullstack.repositories.ReviewRepository;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(ReviewController.class)
@@ -87,48 +92,48 @@ public class ReviewControllerMockMvcTest {
 		when(reviewRepo.findAll()).thenReturn(allReviews);
 		mvc.perform(get("/reviews")).andExpect(model().attribute("reviews", is(allReviews)));
 	}
-	@Test
-	public void shouldRouteToSinglecategory() throws Exception {
-		long arbitraryCategoryId = 1;
-		when(categoryRepo.findById(arbitraryCategoryId)).thenReturn(Optional.of(category));
-		mvc.perform(get("/category?id=1")).andExpect(view().name(is("category")));
-	}
-	@Test
-	public void shouldBeOkForSinglecategory()throws Exception {
-		long arbitraryCategoryId = 1;
-		when(categoryRepo.findById(arbitraryCategoryId)).thenReturn(Optional.of(category));
-		mvc.perform(get("/category?id=1")).andExpect(status().isOk());
-	
-	}
-	@Test
-	public void shouldBeNotOkForSinglecategory()throws Exception {
-		long arbitraryCategoryId = 0;
-		when(categoryRepo.findById(arbitraryCategoryId)).thenReturn(Optional.of(category));
-		mvc.perform(get("/category?id=1")).andExpect(status().isNotFound());
-	}
-	@Test
-	public void shouldPutSingleCategoryIntoModel() throws Exception{
-		when(categoryRepo.findById(2L)).thenReturn(Optional.of(category));
-		mvc.perform(get("/category?id=2")).andExpect(model().attribute("categories", is(category)));
-	}
-	
-	@Test
-	public void shouldBeOkForAllCategories() throws Exception{
-		mvc.perform(get("/categories")).andExpect(status().isOk());
-	}
-	
-	@Test
-	public void shouldRouteToAllCategoriesView() throws Exception{
-		mvc.perform(get("/categories")).andExpect(view().name(is("categories")));
-	
-	}
-	@Test
-	public void shouldPutAllcategoriesIntoModel() throws Exception{
-		Collection<Category> allCategories = Arrays.asList(category, category2);
-		when(categoryRepo.findAll()).thenReturn(allCategories);
-		mvc.perform(get("/categories")).andExpect(model().attribute("categories", is(allCategories)));
-	}
-	
+//	@Test
+//	public void shouldRouteToSinglecategory() throws Exception {
+//		long arbitraryCategoryId = 1;
+//		when(categoryRepo.findById(arbitraryCategoryId)).thenReturn(Optional.of(category));
+//		mvc.perform(get("/category?id=1")).andExpect(view().name(is("category")));
+//	}
+//	@Test
+//	public void shouldBeOkForSinglecategory()throws Exception {
+//		long arbitraryCategoryId = 1;
+//		when(categoryRepo.findById(arbitraryCategoryId)).thenReturn(Optional.of(category));
+//		mvc.perform(get("/category?id=1")).andExpect(status().isOk());
+//	
+//	}
+//	@Test
+//	public void shouldBeNotOkForSinglecategory()throws Exception {
+//		long arbitraryCategoryId = 0;
+//		when(categoryRepo.findById(arbitraryCategoryId)).thenReturn(Optional.of(category));
+//		mvc.perform(get("/category?id=1")).andExpect(status().isNotFound());
+//	}
+//	@Test
+//	public void shouldPutSingleCategoryIntoModel() throws Exception{
+//		when(categoryRepo.findById(2L)).thenReturn(Optional.of(category));
+//		mvc.perform(get("/category?id=2")).andExpect(model().attribute("categories", is(category)));
+//	}
+//	
+//	@Test
+//	public void shouldBeOkForAllCategories() throws Exception{
+//		mvc.perform(get("/categories")).andExpect(status().isOk());
+//	}
+//	
+//	@Test
+//	public void shouldRouteToAllCategoriesView() throws Exception{
+//		mvc.perform(get("/categories")).andExpect(view().name(is("categories")));
+//	
+//	}
+//	@Test
+//	public void shouldPutAllcategoriesIntoModel() throws Exception{
+//		Collection<Category> allCategories = Arrays.asList(category, category2);
+//		when(categoryRepo.findAll()).thenReturn(allCategories);
+//		mvc.perform(get("/categories")).andExpect(model().attribute("categories", is(allCategories)));
+//	}
+//	
 	
 
 }

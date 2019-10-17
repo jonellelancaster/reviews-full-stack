@@ -1,10 +1,8 @@
-package org.wecancodeit.reviewsfullstack;
+package org.wecancodeit.reviewsfullstack.notfound;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class ReviewNotFoundException extends Exception {
-	
-
+public class CategoryNotFoundException extends Exception {
 }

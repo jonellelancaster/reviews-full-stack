@@ -1,4 +1,4 @@
-package org.wecancodeit.reviewsfullstack;
+package org.wecancodeit.reviewsfullstack.models;
 
 import java.util.Arrays;
 import java.util.Collection;
